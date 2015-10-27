@@ -1,0 +1,125 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.example.rtas.posv2.PayFragment"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="3">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/subtotal"
+                android:id="@+id/textView"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/tax"
+                android:id="@+id/textView2"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/total"
+                android:id="@+id/textView3"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/zero"
+                android:id="@+id/textView4"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/zero"
+                android:id="@+id/textView6"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/zero"
+                android:id="@+id/textView5"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="#000000" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/per"
+            android:id="@+id/percent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textSize="15sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/bogo"
+            android:id="@+id/bogo"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textSize="15sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/pay"
+            android:id="@+id/pay"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</LinearLayout>

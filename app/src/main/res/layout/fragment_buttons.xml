@@ -1,0 +1,170 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.example.rtas.posv2.ButtonsFragment"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top"
+        android:weightSum="4"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/apple"
+            android:id="@+id/apple"
+            android:layout_weight="1"
+            android:textSize="15sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/banana"
+            android:id="@+id/banana"
+            android:layout_weight="1"
+            android:textSize="15sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/cheese"
+            android:id="@+id/cheese"
+            android:layout_weight="1"
+            android:textSize="15sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/strawberry"
+            android:id="@+id/strawberry"
+            android:layout_weight="1"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="4"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/chicken"
+            android:id="@+id/chicken"
+            android:layout_weight="1"
+            android:textSize="15sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/milk"
+            android:id="@+id/milk"
+            android:layout_weight="1"
+            android:textSize="15sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/beef"
+            android:id="@+id/beef"
+            android:layout_weight="1"
+            android:textSize="15sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/battery"
+            android:id="@+id/battery"
+            android:layout_weight="1"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="4"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/dress"
+            android:id="@+id/dress"
+            android:layout_weight="1"
+            android:textSize="15sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/lego"
+            android:id="@+id/lego"
+            android:layout_weight="1"
+            android:textSize="15sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/book"
+            android:id="@+id/book"
+            android:layout_weight="1"
+            android:textSize="15sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/lotion"
+            android:id="@+id/lotion"
+            android:layout_weight="1"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="4"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/tshirt"
+            android:id="@+id/tshirt"
+            android:layout_weight="1"
+            android:textSize="15sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/pants"
+            android:id="@+id/pants"
+            android:layout_weight="1"
+            android:textSize="15sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/shoes"
+            android:id="@+id/shoes"
+            android:layout_weight="1"
+            android:textSize="15sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/socks"
+            android:id="@+id/socks"
+            android:layout_weight="1"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</LinearLayout>

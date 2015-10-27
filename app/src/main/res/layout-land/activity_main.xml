@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:weightSum="2">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:weightSum="3">
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.example.rtas.posv2.ItemFragment"
+            android:id="@+id/fragment3"
+            android:layout_gravity="center_horizontal"
+            tools:layout="@layout/fragment_item_list"
+            android:layout_weight="1" />
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.example.rtas.posv2.PayFragment"
+            android:id="@+id/fragment2"
+            android:layout_gravity="center_horizontal"
+            tools:layout="@layout/fragment_pay"
+            android:layout_weight="2" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1">
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.example.rtas.posv2.ButtonsFragment"
+            android:id="@+id/fragment"
+            android:layout_gravity="center_horizontal"
+            tools:layout="@layout/fragment_buttons" />
+    </LinearLayout>
+</LinearLayout>
