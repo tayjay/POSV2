@@ -1,6 +1,7 @@
 package com.example.rtas.posv2;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,10 +17,6 @@ import com.example.rtas.posv2.dummy.DummyContent;
 
 /**
  * A fragment representing a list of Items.
- * <p/>
- * Large screen devices (such as tablets) are supported by replacing the ListView
- * with a GridView.
- * <p/>
  * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
  * interface.
  */
@@ -145,6 +142,11 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(String id);
+    }
+
+    public void addListItems(String item){
+        Resources res = getResources();
+
     }
 
 }

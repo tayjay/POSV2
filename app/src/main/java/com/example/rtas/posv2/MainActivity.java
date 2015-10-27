@@ -38,11 +38,12 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onFragmentInteraction(int id) {
     }
 
     @Override
-    public void onFragmentInteraction(String id) {
+    public void onFragmentInteraction(String id){
 
     }
+
 }

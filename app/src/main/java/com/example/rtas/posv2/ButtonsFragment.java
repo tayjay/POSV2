@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
@@ -58,7 +59,32 @@ public class ButtonsFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        getActivity().findViewById(R.id.apple).setOnClickListener(handleClick);
+        getActivity().findViewById(R.id.banana).setOnClickListener(handleClick);
+        getActivity().findViewById(R.id.battery).setOnClickListener(handleClick);
+        getActivity().findViewById(R.id.cheese).setOnClickListener(handleClick);
+        getActivity().findViewById(R.id.strawberry).setOnClickListener(handleClick);
+        getActivity().findViewById(R.id.chicken).setOnClickListener(handleClick);
+        getActivity().findViewById(R.id.milk).setOnClickListener(handleClick);
+        getActivity().findViewById(R.id.beef).setOnClickListener(handleClick);
+        getActivity().findViewById(R.id.dress).setOnClickListener(handleClick);
+        getActivity().findViewById(R.id.shoes).setOnClickListener(handleClick);
+        getActivity().findViewById(R.id.lego).setOnClickListener(handleClick);
+        getActivity().findViewById(R.id.book).setOnClickListener(handleClick);
+        getActivity().findViewById(R.id.lotion).setOnClickListener(handleClick);
+        getActivity().findViewById(R.id.tshirt).setOnClickListener(handleClick);
+        getActivity().findViewById(R.id.pants).setOnClickListener(handleClick);
+        getActivity().findViewById(R.id.socks).setOnClickListener(handleClick);
     }
+
+    public View.OnClickListener handleClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View arg0) {
+            Button btn = (Button)arg0;
+            int id = btn.getId();
+
+        }
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,9 +94,9 @@ public class ButtonsFragment extends Fragment {
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    public void onButtonPressed(int id) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction(id);
         }
     }
 
@@ -103,7 +129,7 @@ public class ButtonsFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+        public void onFragmentInteraction(int id);
     }
 
 }
