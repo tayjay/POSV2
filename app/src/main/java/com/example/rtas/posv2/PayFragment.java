@@ -70,7 +70,7 @@ public class PayFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(int id) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(id);
+            mListener.onFragmentInteractionPay(id);
         }
     }
 
@@ -103,7 +103,7 @@ public class PayFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(int id);
+        public void onFragmentInteractionPay(int id);
     }
 
 }
