@@ -1,13 +1,17 @@
 package com.example.rtas.posv2;
 
 import android.app.Activity;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 
 /**
@@ -18,7 +22,7 @@ import android.widget.Button;
  * Use the {@link ButtonsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ButtonsFragment extends Fragment {
+public class ButtonsFragment extends Fragment implements View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -27,6 +31,11 @@ public class ButtonsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    //private Activity activity;
+    private LinearLayout layout;
+    private Button button1;
+    private Button button2;
+    private Activity activity;
 
     private OnFragmentInteractionListener mListener;
 
@@ -52,13 +61,33 @@ public class ButtonsFragment extends Fragment {
         // Required empty public constructor
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //activity = getActivity();
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
+        System.out.println();
+
+        if(layout!=null)
+        {
+
+            Button button = (Button) layout.findViewById(R.id.apple);
+            button.setOnClickListener(handleClick);
+        }
+
+        Button apple;
+        Button banana;
+
+        apple = (Button) activity.findViewById(R.id.apple);
+
+        //System.out.println(apple);
+        //apple.setOnClickListener(handleClick);
+        /*
         getActivity().findViewById(R.id.apple).setOnClickListener(handleClick);
         getActivity().findViewById(R.id.banana).setOnClickListener(handleClick);
         getActivity().findViewById(R.id.battery).setOnClickListener(handleClick);
@@ -75,36 +104,75 @@ public class ButtonsFragment extends Fragment {
         getActivity().findViewById(R.id.tshirt).setOnClickListener(handleClick);
         getActivity().findViewById(R.id.pants).setOnClickListener(handleClick);
         getActivity().findViewById(R.id.socks).setOnClickListener(handleClick);
+        */
+
     }
 
     public View.OnClickListener handleClick = new View.OnClickListener() {
         @Override
         public void onClick(View arg0) {
             Button btn = (Button)arg0;
+            switch (arg0.getId()) {
+                case R.id.apple:
+                    mListener.onFragmentInteraction(arg0.getId());
+            }
+
             int id = btn.getId();
+            if (mListener != null) {
+                mListener.onFragmentInteraction(id);
+
+            }
+
 
         }
+
     };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_buttons,container,false);
+        //Button apple = (Button) container.findViewById(R.id.apple);
+        //apple.setOnClickListener(handleClick);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_buttons, container, false);
+
     }
 
+    /*
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(int id) {
         if (mListener != null) {
             mListener.onFragmentInteraction(id);
         }
     }
-
+    */
+    /*
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+
+
         try {
             mListener = (OnFragmentInteractionListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+    */
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+
+        if(context instanceof Activity)
+        {
+            activity = (Activity) context;
+        }
+        try {
+            mListener = (OnFragmentInteractionListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -116,6 +184,22 @@ public class ButtonsFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+    @Override
+    public void onClick(View v) {
+        Button btn = (Button)v;
+        switch (v.getId()) {
+            case R.id.apple:
+                mListener.onFragmentInteraction(v.getId());
+        }
+
+        int id = btn.getId();
+        if (mListener != null) {
+            mListener.onFragmentInteraction(id);
+
+        }
+    }
+
 
     /**
      * This interface must be implemented by activities that contain this

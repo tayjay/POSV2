@@ -1,25 +1,42 @@
 package com.example.rtas.posv2;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by tayjm_000 on 2015-10-27.
  */
 public class POSItems {
 
-    public static List<Item> ITEMS = new ArrayList<Item>();
+    public static List<MyItem> ITEMS = new ArrayList<MyItem>();
 
     public static void init()
     {
-        System.out.println("Initializing ITEMS");
-        ITEMS.add(new Item(R.id.apple,"Apple", 2.00));
-        ITEMS.add(new Item(R.id.banana,"Banana", 666.00));
+        ITEMS.add(new MyItem(R.id.apple, "Apple", 2.00));
+        ITEMS.add(new MyItem(R.id.banana,"Banana", 666.00));
+        ITEMS.add(new MyItem(R.id.battery,"Battery",1.51));
+        ITEMS.add(new MyItem(R.id.cheese,"Cheese",1.51));
+        ITEMS.add(new MyItem(R.id.strawberry,"Strawberry",1.51));
+        ITEMS.add(new MyItem(R.id.chicken,"Chicken",1.51));
+        ITEMS.add(new MyItem(R.id.milk,"Milk",1.51));
+        ITEMS.add(new MyItem(R.id.beef,"Beef",1.51));
+        ITEMS.add(new MyItem(R.id.dress,"Dress",1.51));
+        ITEMS.add(new MyItem(R.id.lego,"Lego",1.51));
+        ITEMS.add(new MyItem(R.id.book,"Book",1.51));
+        ITEMS.add(new MyItem(R.id.lotion,"Lotion",1.51));
+        ITEMS.add(new MyItem(R.id.tshirt,"T-Shirt",1.51));
+        ITEMS.add(new MyItem(R.id.pants,"Pants",1.51));
+        ITEMS.add(new MyItem(R.id.shoes,"Shoes",1.51));
+        ITEMS.add(new MyItem(R.id.socks,"Socks",1.51));
+
     }
 
     public static double getPriceByName(String name)
     {
-        for(Item item: ITEMS)
+        for(MyItem item: ITEMS)
         {
             if(item.getName().equals(name))
             {
@@ -29,14 +46,37 @@ public class POSItems {
         return 0;
     }
 
-    public static Item getItemById(int id)
+    public static MyItem getItemById(int id)
     {
-        for(Item item: ITEMS)
+        for(MyItem item: ITEMS)
         {
             if(item.getId()==id)
             {
+
                 return item;
             }
+        }
+        return null;
+    }
+
+    public static MyItem getItemByName(String name)
+    {
+        for(MyItem item: ITEMS)
+        {
+            if(item.getName().equals(name))
+            {
+
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public static MyItem getItemRand()
+    {
+        for(MyItem item: ITEMS)
+        {
+            return item;
         }
         return null;
     }
@@ -64,11 +104,23 @@ public class POSItems {
         }
 
         public String getName() {
-            return name;
+            if(name != null) {
+                return name;
+            }
+            else
+            {
+                return "";
+            }
         }
 
         public double getPrice() {
-            return price;
+            if(name != null) {
+                return price;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         public int getQuantity() {
