@@ -27,7 +27,7 @@ public class MyItem {
         }
         else
         {
-            return "";
+            return "null";
         }
     }
 
@@ -52,5 +52,10 @@ public class MyItem {
     public void addQuantity(int add)
     {
         this.quantity += add;
+    }
+
+    @Override
+    public String toString() {
+        return this.name + " $"+this.price;
     }
 }

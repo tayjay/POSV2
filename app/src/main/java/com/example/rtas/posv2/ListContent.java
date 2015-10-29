@@ -18,17 +18,21 @@ public class ListContent {
     /**
      * A map of items, by Name
      */
-    //public static Map<String,MyItem> ITEM_MAP = new HashMap<>();
+    public static Map<String,MyItem> ITEM_MAP = new HashMap<>();
 
     static
     {
-        addItem(POSItems.getItemRand());
+        addItem(new MyItem(0,"THIS IS AN ITEM.",0));
+        /*
+        addItem(POSItems.getItemById(R.id.apple));
+        addItem(POSItems.getItemById(R.id.banana));
+        */
     }
 
-    private static void addItem(MyItem item)
+    public static void addItem(MyItem item)
     {
         ITEMS.add(item);
-        //ITEM_MAP.put(item.getName(),item);
+        ITEM_MAP.put(item.getName(), item);
     }
 
 
