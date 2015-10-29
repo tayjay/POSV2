@@ -9,11 +9,12 @@ public class MyItem {
     private double price;
     private int quantity;
 
-    public MyItem(int id,String name, double price)
+    public MyItem(int id,String name, double price,int quantity)
     {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.quantity = quantity;
     }
 
     public int getId()
@@ -56,6 +57,6 @@ public class MyItem {
 
     @Override
     public String toString() {
-        return this.name + " $"+this.price;
+        return this.name + "        $"+this.price+"         Qty: "+this.quantity;
     }
 }

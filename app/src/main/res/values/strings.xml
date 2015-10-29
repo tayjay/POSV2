@@ -24,8 +24,8 @@
     <string name="total">Total</string>
     <string name="subtotal">Sub-Total</string>
     <string name="tax">Tax</string>
-    <string name="per">% Discount</string>
-    <string name="bogo">BOGO</string>
+    <string name="per">Clear</string>
+    <string name="bogo">1/2 OFF</string>
     <string name="pay">Pay</string>
     <string name="zero">$0.00</string>
 
