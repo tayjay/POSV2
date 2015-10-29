@@ -22,7 +22,7 @@ public class ListContent {
 
     static
     {
-        addItem(new MyItem(0,"THIS IS AN ITEM.",0));
+        //addItem(new MyItem(0,"THIS IS AN ITEM.",0));
         /*
         addItem(POSItems.getItemById(R.id.apple));
         addItem(POSItems.getItemById(R.id.banana));
@@ -31,8 +31,34 @@ public class ListContent {
 
     public static void addItem(MyItem item)
     {
-        ITEMS.add(item);
-        ITEM_MAP.put(item.getName(), item);
+        //item.setQuantity(1);
+        if(ITEM_MAP.get(item.getName())!=null)
+        {
+            //ITEMS.remove(item);
+            item.setQuantity(item.getQuantity()+1);
+            //ITEMS.add(item);
+
+        }
+        else {
+            if(item.getQuantity()==0)
+            {
+                item.setQuantity(1);
+            }
+            ITEMS.add(item);
+            ITEM_MAP.put(item.getName(), item);
+        }
+    }
+
+    public static void removeItem(int position)
+    {
+        MyItem item = ITEMS.get(position);
+        if(item.getQuantity()!=0) {
+            item.setQuantity(0);
+        }
+        ITEMS.remove(position);
+        ITEM_MAP.remove(item.getName());
+
+
     }
 
 

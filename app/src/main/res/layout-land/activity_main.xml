@@ -14,14 +14,22 @@
         android:layout_weight="1"
         android:weightSum="3">
 
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:text="        Item               Price               Qty."
+            android:id="@+id/textView4"
+            android:layout_gravity="center_horizontal"
+            android:textSize="12sp"
+            android:layout_weight="1.45" />
+
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:name="com.example.rtas.posv2.ItemFragment"
             android:id="@+id/fragment3"
-            android:layout_gravity="center_horizontal"
             tools:layout="@layout/fragment_item_list"
-            android:layout_weight="1" />
+            android:layout_weight="0.5" />
 
         <fragment
             android:layout_width="match_parent"
@@ -30,7 +38,7 @@
             android:id="@+id/fragment2"
             android:layout_gravity="center_horizontal"
             tools:layout="@layout/fragment_pay"
-            android:layout_weight="2" />
+            android:layout_weight="1.05" />
     </LinearLayout>
 
     <LinearLayout

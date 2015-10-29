@@ -11,18 +11,30 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.DecimalFormat;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements PayFragment.OnFragmentInteractionListener, ButtonsFragment.OnFragmentInteractionListener, ItemFragment.OnListInteractionListener ,View.OnClickListener{
 
-    Adapter mAdapter;
+
+
+    double subtotalPrice = 0;
+    double taxPrice = 0;
+    double totalPrice = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         POSItems.init();
         setContentView(R.layout.activity_main);
+
+
+
 
         //ListView list = (ListView) findViewById(R.id.fragment3);
         //list.deferNotifyDataSetChanged();
@@ -80,55 +92,77 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
     @Override
     public void onClick(View v) {
         MyItem item;
+
         switch (v.getId())
         {
+            /*
             case R.id.apple:
                 item = POSItems.getItemById(v.getId());
                 Toast.makeText(getApplicationContext(), item.getName()+" $"+item.getPrice(),
                         Toast.LENGTH_SHORT).show();
-                //ListContent.addItem(POSItems.getItemById(v.getId()));
-                final ItemFragment fragment = (ItemFragment) getSupportFragmentManager().findFragmentById(R.id.fragment3);
-                fragment.update(v, item);
-                new Thread() {
-                    public void run() {
-                        int i=0;
-                        while (i++ < 1) {
-                            try {
-                                runOnUiThread(new Runnable() {
+                ListContent.addItem(POSItems.getItemById(v.getId()));
+                ItemFragment.mAdapter.notifyDataSetChanged();
 
-                                    @Override
-                                    public void run() {
-                                        ListContent.addItem(POSItems.getItemById(R.id.apple));
-                                    }
-                                });
-                                Thread.sleep(300);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                }.start();
+
                 break;
             case R.id.banana:
                 item = POSItems.getItemById(v.getId());
                 Toast.makeText(getApplicationContext(), item.getName()+" $"+item.getPrice(),
                         Toast.LENGTH_SHORT).show();
+                ListContent.addItem(POSItems.getItemById(v.getId()));
+                ItemFragment.mAdapter.notifyDataSetChanged();
 
                 break;
             case R.id.battery:
                 item = POSItems.getItemById(v.getId());
                 Toast.makeText(getApplicationContext(), item.getName()+" $"+item.getPrice(),
                         Toast.LENGTH_SHORT).show();
+                ListContent.addItem(POSItems.getItemById(v.getId()));
+                ItemFragment.mAdapter.notifyDataSetChanged();
+                break;
+            */
             default:
                 item = POSItems.getItemById(v.getId());
-                Toast.makeText(getApplicationContext(), item.getName()+" $"+item.getPrice(),
-                        Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), item.getName()+" $"+item.getPrice(),
+                       // Toast.LENGTH_SHORT).show();
+                ListContent.addItem(POSItems.getItemById(v.getId()));
+                ItemFragment.mAdapter.notifyDataSetChanged();
+
+                TextView subtotal = (TextView)findViewById(R.id.subtotal);
+                TextView tax = (TextView)findViewById(R.id.tax);
+                TextView total = (TextView)findViewById(R.id.total);
+                DecimalFormat df = new DecimalFormat(".##");
+                subtotalPrice += item.getPrice();
+                taxPrice = subtotalPrice*.12;
+                totalPrice = subtotalPrice+taxPrice;
+                subtotal.setText("$ "+df.format(subtotalPrice));
+                tax.setText("$ "+df.format(taxPrice));
+                total.setText("$ "+df.format(totalPrice));
+                ItemFragment.mAdapter.notifyDataSetChanged();
                 break;
+
         }
+
     }
 
-    @Override
-    public void onListInteraction(ListAdapter adapter, String id) {
 
+    @Override
+    public void onListInteraction(ArrayAdapter adapter, int id) {
+        MyItem item = ListContent.ITEMS.get(id);
+
+
+        TextView subtotal = (TextView)findViewById(R.id.subtotal);
+        TextView tax = (TextView)findViewById(R.id.tax);
+        TextView total = (TextView)findViewById(R.id.total);
+        DecimalFormat df = new DecimalFormat("#.##");
+        subtotalPrice -= (item.getPrice()*(item.getQuantity()));
+        taxPrice = subtotalPrice*.12;
+        totalPrice = subtotalPrice+taxPrice;
+        subtotal.setText("$ "+df.format(subtotalPrice));
+        tax.setText("$ "+df.format(taxPrice));
+        total.setText("$ "+df.format(totalPrice));
+        ListContent.removeItem(id);
+        ItemFragment.mAdapter.notifyDataSetChanged();
+        ItemFragment.mAdapter.notifyDataSetChanged();
     }
 }

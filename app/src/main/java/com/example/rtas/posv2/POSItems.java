@@ -20,22 +20,22 @@ public class POSItems {
         apple = new MyItem(R.id.apple, "Apple", 2.00);
         ITEMS.add(apple);
         */
-        ITEMS.add(new MyItem(R.id.apple, "Apple", 2.00));
-        ITEMS.add(new MyItem(R.id.banana,"Banana", 666.00));
-        ITEMS.add(new MyItem(R.id.battery,"Battery",1.51));
-        ITEMS.add(new MyItem(R.id.cheese,"Cheese",1.51));
-        ITEMS.add(new MyItem(R.id.strawberry,"Strawberry",1.51));
-        ITEMS.add(new MyItem(R.id.chicken,"Chicken",1.51));
-        ITEMS.add(new MyItem(R.id.milk,"Milk",1.51));
-        ITEMS.add(new MyItem(R.id.beef,"Beef",1.51));
-        ITEMS.add(new MyItem(R.id.dress,"Dress",1.51));
-        ITEMS.add(new MyItem(R.id.lego,"Lego",1.51));
-        ITEMS.add(new MyItem(R.id.book,"Book",1.51));
-        ITEMS.add(new MyItem(R.id.lotion,"Lotion",1.51));
-        ITEMS.add(new MyItem(R.id.tshirt,"T-Shirt",1.51));
-        ITEMS.add(new MyItem(R.id.pants,"Pants",1.51));
-        ITEMS.add(new MyItem(R.id.shoes,"Shoes",1.51));
-        ITEMS.add(new MyItem(R.id.socks,"Socks",1.51));
+        ITEMS.add(new MyItem(R.id.apple, "Apple", 2.00,1));
+        ITEMS.add(new MyItem(R.id.banana,"Banana", 666.00,1));
+        ITEMS.add(new MyItem(R.id.battery,"Battery",1.51,1));
+        ITEMS.add(new MyItem(R.id.cheese,"Cheese",1.51,1));
+        ITEMS.add(new MyItem(R.id.strawberry,"Strawberry",1.51,1));
+        ITEMS.add(new MyItem(R.id.chicken,"Chicken",1.51,1));
+        ITEMS.add(new MyItem(R.id.milk,"Milk",1.51,1));
+        ITEMS.add(new MyItem(R.id.beef,"Beef",1.51,1));
+        ITEMS.add(new MyItem(R.id.dress,"Dress",1.51,1));
+        ITEMS.add(new MyItem(R.id.lego,"Lego",1.51,1));
+        ITEMS.add(new MyItem(R.id.book,"Book",1.51,1));
+        ITEMS.add(new MyItem(R.id.lotion,"Lotion",1.51,1));
+        ITEMS.add(new MyItem(R.id.tshirt,"T-Shirt",1.51,1));
+        ITEMS.add(new MyItem(R.id.pants,"Pants",1.51,1));
+        ITEMS.add(new MyItem(R.id.shoes,"Shoes",1.51,1));
+        ITEMS.add(new MyItem(R.id.socks,"Socks",1.51,1));
 
 
     }
@@ -61,7 +61,7 @@ public class POSItems {
                 return item;
             }
         }
-        return new MyItem(0,"null",0);
+        return new MyItem(0,"null",0,0);
     }
 
     public static MyItem getItemByName(String name)
@@ -74,7 +74,7 @@ public class POSItems {
                 return item;
             }
         }
-        return new MyItem(0,"null",0);
+        return new MyItem(0,"null",0,0);
     }
 
     public static MyItem getItemRand()
@@ -85,7 +85,7 @@ public class POSItems {
                 return item;
             }
         }
-        return new MyItem(0,"null",0);
+        return new MyItem(0,"null",0,0);
     }
 
 

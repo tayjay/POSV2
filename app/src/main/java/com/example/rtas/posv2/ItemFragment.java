@@ -1,6 +1,7 @@
 package com.example.rtas.posv2;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 //import android.app.Fragment;
@@ -14,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.rtas.posv2.dummy.DummyContent;
 
@@ -35,6 +37,8 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
 
     private OnListInteractionListener mListener;
 
+    public static ItemFragment instance;
+
     /**
      * The fragment's ListView/GridView.
      */
@@ -44,7 +48,7 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
      * The Adapter which will be used to populate the ListView/GridView with
      * Views.
      */
-    public ListAdapter mAdapter;
+    public static ArrayAdapter mAdapter;
 
     // TODO: Rename and change types of parameters
     public static ItemFragment newInstance(String param1, String param2) {
@@ -75,6 +79,7 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
         // TODO: Change Adapter to display your content
         mAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_list_item_1, android.R.id.text1, ListContent.ITEMS);
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -104,6 +109,17 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mListener = (OnListInteractionListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
@@ -112,9 +128,15 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (null != mListener) {
+
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
             //mListener.onListInteraction(ListContent.ITEMS.get(position).getName());
+            /*
+            Toast.makeText(getContext(), position +" "+id,
+                    Toast.LENGTH_SHORT).show();
+                    */
+            mListener.onListInteraction(mAdapter,position);
 
         }
     }
@@ -149,7 +171,7 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
      */
     public interface OnListInteractionListener {
         // TODO: Update argument type and name
-        public void onListInteraction(ListAdapter adapter, String id);
+        public void onListInteraction(ArrayAdapter adapter, int id);
     }
 
     public void addListItems(String item){
