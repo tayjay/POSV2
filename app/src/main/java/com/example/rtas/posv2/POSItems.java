@@ -12,9 +12,14 @@ import java.util.logging.Logger;
 public class POSItems {
 
     public static List<MyItem> ITEMS = new ArrayList<MyItem>();
+    private static MyItem apple;
 
     public static void init()
     {
+        /*
+        apple = new MyItem(R.id.apple, "Apple", 2.00);
+        ITEMS.add(apple);
+        */
         ITEMS.add(new MyItem(R.id.apple, "Apple", 2.00));
         ITEMS.add(new MyItem(R.id.banana,"Banana", 666.00));
         ITEMS.add(new MyItem(R.id.battery,"Battery",1.51));
@@ -31,6 +36,7 @@ public class POSItems {
         ITEMS.add(new MyItem(R.id.pants,"Pants",1.51));
         ITEMS.add(new MyItem(R.id.shoes,"Shoes",1.51));
         ITEMS.add(new MyItem(R.id.socks,"Socks",1.51));
+
 
     }
 
@@ -52,11 +58,10 @@ public class POSItems {
         {
             if(item.getId()==id)
             {
-
                 return item;
             }
         }
-        return null;
+        return new MyItem(0,"null",0);
     }
 
     public static MyItem getItemByName(String name)
@@ -69,16 +74,18 @@ public class POSItems {
                 return item;
             }
         }
-        return null;
+        return new MyItem(0,"null",0);
     }
 
     public static MyItem getItemRand()
     {
         for(MyItem item: ITEMS)
         {
-            return item;
+            if(item!=null) {
+                return item;
+            }
         }
-        return null;
+        return new MyItem(0,"null",0);
     }
 
 

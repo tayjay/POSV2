@@ -3,13 +3,15 @@ package com.example.rtas.posv2;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.app.Fragment;
+//import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -17,7 +19,7 @@ import com.example.rtas.posv2.dummy.DummyContent;
 
 /**
  * A fragment representing a list of Items.
- * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
+ * Activities containing this fragment MUST implement the {@link com.example.rtas.posv2.ItemFragment.OnListInteractionListener}
  * interface.
  */
 public class ItemFragment extends Fragment implements AbsListView.OnItemClickListener {
@@ -31,7 +33,7 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private OnListInteractionListener mListener;
 
     /**
      * The fragment's ListView/GridView.
@@ -42,7 +44,7 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
      * The Adapter which will be used to populate the ListView/GridView with
      * Views.
      */
-    private ListAdapter mAdapter;
+    public ListAdapter mAdapter;
 
     // TODO: Rename and change types of parameters
     public static ItemFragment newInstance(String param1, String param2) {
@@ -71,8 +73,8 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
         }
 
         // TODO: Change Adapter to display your content
-        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
+        mAdapter = new ArrayAdapter<>(getActivity(),
+                android.R.layout.simple_list_item_1, android.R.id.text1, ListContent.ITEMS);
     }
 
     @Override
@@ -94,7 +96,7 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnFragmentInteractionListener) activity;
+            mListener = (OnListInteractionListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -112,8 +114,14 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+            //mListener.onListInteraction(ListContent.ITEMS.get(position).getName());
+
         }
+    }
+
+    public void clicked()
+    {
+        //mAdapter.notifyDataSetChanged();
     }
 
     /**
@@ -139,13 +147,21 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnListInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(String id);
+        public void onListInteraction(ListAdapter adapter, String id);
     }
 
     public void addListItems(String item){
         Resources res = getResources();
+
+    }
+
+    public void update(View view,MyItem item)
+    {
+        //ListContent.addItem(item);
+        //mListView = (AbsListView) view.findViewById(android.R.id.list);
+        //mAdapter.notify();
 
     }
 

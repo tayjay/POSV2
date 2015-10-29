@@ -1,6 +1,7 @@
 package com.example.rtas.posv2;
 
 import android.app.Fragment;
+import android.app.ListFragment;
 import android.content.Context;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
@@ -9,15 +10,27 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements PayFragment.OnFragmentInteractionListener, ButtonsFragment.OnFragmentInteractionListener, ItemFragment.OnFragmentInteractionListener,View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements PayFragment.OnFragmentInteractionListener, ButtonsFragment.OnFragmentInteractionListener, ItemFragment.OnListInteractionListener ,View.OnClickListener{
 
+    Adapter mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         POSItems.init();
+        setContentView(R.layout.activity_main);
+
+        //ListView list = (ListView) findViewById(R.id.fragment3);
+        //list.deferNotifyDataSetChanged();
+
+
+
+
+
     }
 
     @Override
@@ -53,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
         }
     }
 
-    @Override
+
     public void onFragmentInteraction(String id){
 
     }
@@ -73,11 +86,34 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
                 item = POSItems.getItemById(v.getId());
                 Toast.makeText(getApplicationContext(), item.getName()+" $"+item.getPrice(),
                         Toast.LENGTH_SHORT).show();
+                //ListContent.addItem(POSItems.getItemById(v.getId()));
+                final ItemFragment fragment = (ItemFragment) getSupportFragmentManager().findFragmentById(R.id.fragment3);
+                fragment.update(v, item);
+                new Thread() {
+                    public void run() {
+                        int i=0;
+                        while (i++ < 1) {
+                            try {
+                                runOnUiThread(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        ListContent.addItem(POSItems.getItemById(R.id.apple));
+                                    }
+                                });
+                                Thread.sleep(300);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }.start();
                 break;
             case R.id.banana:
                 item = POSItems.getItemById(v.getId());
                 Toast.makeText(getApplicationContext(), item.getName()+" $"+item.getPrice(),
                         Toast.LENGTH_SHORT).show();
+
                 break;
             case R.id.battery:
                 item = POSItems.getItemById(v.getId());
@@ -89,5 +125,10 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
                         Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+
+    @Override
+    public void onListInteraction(ListAdapter adapter, String id) {
+
     }
 }
