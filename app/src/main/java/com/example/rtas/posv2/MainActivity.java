@@ -10,6 +10,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
     double subtotalPrice = 0;
     double taxPrice = 0;
     double totalPrice = 0;
+    public static boolean halfPriceFlag = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,12 +106,12 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
                 total.setText("$ "+df.format(totalPrice));
                 ItemFragment.mAdapter.notifyDataSetChanged();
                 break;
+
             case R.id.pay:{
 
                 Toast.makeText(MainActivity.this, "Payment Processed", Toast.LENGTH_SHORT).show();
                 AlertDialog receiptDialog = new AlertDialog.Builder(MainActivity.this).create();
                 receiptDialog.setTitle("Receipt");
-                //receiptDialog.setContentView(R.layout.fragment_item_list);
 
                 receiptDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
@@ -128,18 +130,25 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
                 subtotal.setText("$ "+df.format(subtotalPrice));
                 tax.setText("$ "+df.format(taxPrice));
                 total.setText("$ "+df.format(totalPrice));
+                halfPriceFlag = true;
                 break;
             }
             case R.id.clear:{
                 Toast.makeText(MainActivity.this, "Clear", Toast.LENGTH_SHORT).show();
+                int count = ItemFragment.mAdapter.getCount();
+                for(int i=0;i<count;i++){
+                    ListContent.removeItem(0);
+                    ItemFragment.mAdapter.notifyDataSetChanged();
+                }
+                Log.d("DEBUG", "Count of the array = "+count);
                 subtotalPrice = 0.00;
                 taxPrice = 0.00;
                 totalPrice = 0.00;
                 subtotal.setText("$ "+df.format(subtotalPrice));
                 tax.setText("$ "+df.format(taxPrice));
-                total.setText("$ "+df.format(totalPrice));
-                ItemFragment.mAdapter.clear();
+                total.setText("$ " + df.format(totalPrice));
                 ItemFragment.mAdapter.notifyDataSetChanged();
+                halfPriceFlag = false;
                 break;
 
             }
@@ -155,13 +164,21 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
         TextView tax = (TextView)findViewById(R.id.tax);
         TextView total = (TextView)findViewById(R.id.total);
         DecimalFormat df = new DecimalFormat("#.##");
-        subtotalPrice -= (item.getPrice()*(item.getQuantity()));
-        taxPrice = subtotalPrice*.12;
-        totalPrice = subtotalPrice+taxPrice;
+        if(halfPriceFlag){
+            subtotalPrice -= ((item.getPrice()*(item.getQuantity()))/2);
+            taxPrice = subtotalPrice*.12;
+            totalPrice = subtotalPrice+taxPrice;
+        }else{
+            subtotalPrice -= (item.getPrice()*(item.getQuantity()));
+            taxPrice = subtotalPrice*.12;
+            totalPrice = subtotalPrice+taxPrice;
+        }
         subtotal.setText("$ "+df.format(subtotalPrice));
         tax.setText("$ "+df.format(taxPrice));
         total.setText("$ "+df.format(totalPrice));
+        Log.d("DEBUG", "Position = " + id);
         ListContent.removeItem(id);
+
         ItemFragment.mAdapter.notifyDataSetChanged();
         ItemFragment.mAdapter.notifyDataSetChanged();
     }

@@ -57,9 +57,5 @@ public class ListContent {
         }
         ITEMS.remove(position);
         ITEM_MAP.remove(item.getName());
-
-
     }
-
-
 }

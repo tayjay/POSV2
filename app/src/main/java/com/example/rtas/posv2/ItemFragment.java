@@ -136,7 +136,7 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
             Toast.makeText(getContext(), position +" "+id,
                     Toast.LENGTH_SHORT).show();
                     */
-            mListener.onListInteraction(mAdapter,position);
+            mListener.onListInteraction(mAdapter, position);
 
         }
     }
