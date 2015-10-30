@@ -1,11 +1,13 @@
 package com.example.rtas.posv2;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Fragment;
 import android.app.ListFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +17,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -108,8 +112,42 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
 
                 Toast.makeText(MainActivity.this, "Payment Processed", Toast.LENGTH_SHORT).show();
                 AlertDialog receiptDialog = new AlertDialog.Builder(MainActivity.this).create();
+
                 receiptDialog.setTitle("Receipt");
+                //receiptDialog.setContentView(R.layout.dialog_layout);
                 //receiptDialog.setContentView(R.layout.fragment_item_list);
+                LinearLayout lila1= new LinearLayout(this);
+                //ListView listView = new ListView(ListContent);
+                lila1.setOrientation(LinearLayout.VERTICAL);
+                final TextView title  = new TextView(this);
+                final TextView line  = new TextView(this);
+                final TextView blank = new TextView(this);
+                final TextView totalTitle = new TextView(this);
+                final TextView totalNum = new TextView(this);
+
+                title.setText("Item              Price               Qty.");
+                title.setPadding(10, 5, 0, 0);
+
+                line.setText("_____________________________________");
+
+                blank.setText("\n");
+                totalTitle.setText("Total");
+                totalTitle.setPadding(10, 2, 0, 0);
+                totalNum.setText("$" + this.totalPrice);
+                totalNum.setPadding(10,0,0,0);
+
+                lila1.addView(title);
+                for(MyItem thisItem : ListContent.ITEMS)
+                {
+                    final TextView listView = new TextView(this);
+                    listView.setText(thisItem.toString());
+                    listView.setPadding(10,0,0,10);
+                    lila1.addView(listView);
+                }
+                lila1.addView(line);
+                lila1.addView(totalTitle);
+                lila1.addView(totalNum);
+                receiptDialog.setView(lila1);
 
                 receiptDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
@@ -154,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
         TextView subtotal = (TextView)findViewById(R.id.subtotal);
         TextView tax = (TextView)findViewById(R.id.tax);
         TextView total = (TextView)findViewById(R.id.total);
-        DecimalFormat df = new DecimalFormat("#.##");
+        DecimalFormat df = new DecimalFormat("0.##");
         subtotalPrice -= (item.getPrice()*(item.getQuantity()));
         taxPrice = subtotalPrice*.12;
         totalPrice = subtotalPrice+taxPrice;

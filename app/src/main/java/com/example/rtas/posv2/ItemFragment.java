@@ -132,10 +132,10 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
             //mListener.onListInteraction(ListContent.ITEMS.get(position).getName());
-            /*
+
             Toast.makeText(getContext(), position +" "+id,
                     Toast.LENGTH_SHORT).show();
-                    */
+
             mListener.onListInteraction(mAdapter,position);
 
         }
