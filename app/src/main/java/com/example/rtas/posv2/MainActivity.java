@@ -1,9 +1,12 @@
 package com.example.rtas.posv2;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.ListFragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,18 +35,7 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
         super.onCreate(savedInstanceState);
         POSItems.init();
         setContentView(R.layout.activity_main);
-
-
-
-
-        //ListView list = (ListView) findViewById(R.id.fragment3);
-        //list.deferNotifyDataSetChanged();
-
-
-
-
-
-    }
+}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -92,46 +84,18 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
     @Override
     public void onClick(View v) {
         MyItem item;
+        TextView subtotal = (TextView)findViewById(R.id.subtotal);
+        TextView tax = (TextView)findViewById(R.id.tax);
+        TextView total = (TextView)findViewById(R.id.total);
+        DecimalFormat df = new DecimalFormat(".##");
 
         switch (v.getId())
         {
-            /*
-            case R.id.apple:
-                item = POSItems.getItemById(v.getId());
-                Toast.makeText(getApplicationContext(), item.getName()+" $"+item.getPrice(),
-                        Toast.LENGTH_SHORT).show();
-                ListContent.addItem(POSItems.getItemById(v.getId()));
-                ItemFragment.mAdapter.notifyDataSetChanged();
-
-
-                break;
-            case R.id.banana:
-                item = POSItems.getItemById(v.getId());
-                Toast.makeText(getApplicationContext(), item.getName()+" $"+item.getPrice(),
-                        Toast.LENGTH_SHORT).show();
-                ListContent.addItem(POSItems.getItemById(v.getId()));
-                ItemFragment.mAdapter.notifyDataSetChanged();
-
-                break;
-            case R.id.battery:
-                item = POSItems.getItemById(v.getId());
-                Toast.makeText(getApplicationContext(), item.getName()+" $"+item.getPrice(),
-                        Toast.LENGTH_SHORT).show();
-                ListContent.addItem(POSItems.getItemById(v.getId()));
-                ItemFragment.mAdapter.notifyDataSetChanged();
-                break;
-            */
             default:
+                ItemFragment.mAdapter.notifyDataSetChanged();
                 item = POSItems.getItemById(v.getId());
-                //Toast.makeText(getApplicationContext(), item.getName()+" $"+item.getPrice(),
-                       // Toast.LENGTH_SHORT).show();
                 ListContent.addItem(POSItems.getItemById(v.getId()));
                 ItemFragment.mAdapter.notifyDataSetChanged();
-
-                TextView subtotal = (TextView)findViewById(R.id.subtotal);
-                TextView tax = (TextView)findViewById(R.id.tax);
-                TextView total = (TextView)findViewById(R.id.total);
-                DecimalFormat df = new DecimalFormat(".##");
                 subtotalPrice += item.getPrice();
                 taxPrice = subtotalPrice*.12;
                 totalPrice = subtotalPrice+taxPrice;
@@ -140,7 +104,45 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
                 total.setText("$ "+df.format(totalPrice));
                 ItemFragment.mAdapter.notifyDataSetChanged();
                 break;
+            case R.id.pay:{
 
+                Toast.makeText(MainActivity.this, "Payment Processed", Toast.LENGTH_SHORT).show();
+                AlertDialog receiptDialog = new AlertDialog.Builder(MainActivity.this).create();
+                receiptDialog.setTitle("Receipt");
+                //receiptDialog.setContentView(R.layout.fragment_item_list);
+
+                receiptDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                receiptDialog.show();
+                break;
+            }
+            case R.id.half:{
+                Toast.makeText(MainActivity.this, "1/2 Off", Toast.LENGTH_SHORT).show();
+                subtotalPrice /= 2;
+                taxPrice = subtotalPrice*.12;
+                totalPrice = subtotalPrice+taxPrice;
+                subtotal.setText("$ "+df.format(subtotalPrice));
+                tax.setText("$ "+df.format(taxPrice));
+                total.setText("$ "+df.format(totalPrice));
+                break;
+            }
+            case R.id.clear:{
+                Toast.makeText(MainActivity.this, "Clear", Toast.LENGTH_SHORT).show();
+                subtotalPrice = 0.00;
+                taxPrice = 0.00;
+                totalPrice = 0.00;
+                subtotal.setText("$ "+df.format(subtotalPrice));
+                tax.setText("$ "+df.format(taxPrice));
+                total.setText("$ "+df.format(totalPrice));
+                ItemFragment.mAdapter.clear();
+                ItemFragment.mAdapter.notifyDataSetChanged();
+                break;
+
+            }
         }
 
     }
@@ -149,8 +151,6 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
     @Override
     public void onListInteraction(ArrayAdapter adapter, int id) {
         MyItem item = ListContent.ITEMS.get(id);
-
-
         TextView subtotal = (TextView)findViewById(R.id.subtotal);
         TextView tax = (TextView)findViewById(R.id.tax);
         TextView total = (TextView)findViewById(R.id.total);
@@ -166,3 +166,4 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
         ItemFragment.mAdapter.notifyDataSetChanged();
     }
 }
+

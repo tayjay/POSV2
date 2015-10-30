@@ -28,6 +28,8 @@
     <string name="bogo">1/2 OFF</string>
     <string name="pay">Pay</string>
     <string name="zero">$0.00</string>
+    <string name="splash">Point of Sale V2 By [Inset Name] and [Insert Name]</string>
+
 
     <string-array name="items">
         <item>Apple</item>
@@ -47,5 +49,6 @@
         <item>Beef</item>
         <item>Chicken</item>
     </string-array>
+    <string name="title_activity_splash_screen">SplashScreen</string>
 
 </resources>
