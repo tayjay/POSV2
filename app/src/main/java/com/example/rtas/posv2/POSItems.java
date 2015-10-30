@@ -17,21 +17,21 @@ public class POSItems {
     public static void init()
     {
         ITEMS.add(new MyItem(R.id.apple, "Apple", 2.00,1));
-        ITEMS.add(new MyItem(R.id.banana,"Banana", 666.00,1));
-        ITEMS.add(new MyItem(R.id.battery,"Battery",1.51,1));
-        ITEMS.add(new MyItem(R.id.cheese,"Cheese",1.51,1));
-        ITEMS.add(new MyItem(R.id.strawberry,"Strawberry",1.51,1));
-        ITEMS.add(new MyItem(R.id.chicken,"Chicken",1.51,1));
-        ITEMS.add(new MyItem(R.id.milk,"Milk",1.51,1));
-        ITEMS.add(new MyItem(R.id.beef,"Beef",1.51,1));
-        ITEMS.add(new MyItem(R.id.dress,"Dress",1.51,1));
-        ITEMS.add(new MyItem(R.id.lego,"Lego",1.51,1));
-        ITEMS.add(new MyItem(R.id.book,"Book",1.51,1));
-        ITEMS.add(new MyItem(R.id.lotion,"Lotion",1.51,1));
-        ITEMS.add(new MyItem(R.id.tshirt,"T-Shirt",1.51,1));
-        ITEMS.add(new MyItem(R.id.pants,"Pants",1.51,1));
-        ITEMS.add(new MyItem(R.id.shoes,"Shoes",1.51,1));
-        ITEMS.add(new MyItem(R.id.socks,"Socks",1.51,1));
+        ITEMS.add(new MyItem(R.id.banana,"Banana", 1.75,1));
+        ITEMS.add(new MyItem(R.id.battery,"Battery",6.00,1));
+        ITEMS.add(new MyItem(R.id.cheese,"Cheese",3.25,1));
+        ITEMS.add(new MyItem(R.id.strawberry,"Strawberry",0.99,1));
+        ITEMS.add(new MyItem(R.id.chicken,"Chicken",7.77,1));
+        ITEMS.add(new MyItem(R.id.milk,"Milk",4.99,1));
+        ITEMS.add(new MyItem(R.id.beef,"Beef",8.99,1));
+        ITEMS.add(new MyItem(R.id.dress,"Dress",20.00,1));
+        ITEMS.add(new MyItem(R.id.lego,"Lego",56.99,1));
+        ITEMS.add(new MyItem(R.id.book,"Book",6.99,1));
+        ITEMS.add(new MyItem(R.id.lotion,"Lotion",3.99,1));
+        ITEMS.add(new MyItem(R.id.tshirt,"T-Shirt",14.99,1));
+        ITEMS.add(new MyItem(R.id.pants,"Pants",25.00,1));
+        ITEMS.add(new MyItem(R.id.shoes,"Shoes",32.99,1));
+        ITEMS.add(new MyItem(R.id.socks,"Socks",7.85,1));
 
 
     }

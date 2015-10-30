@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -108,10 +109,41 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
                 break;
 
             case R.id.pay:{
-
                 Toast.makeText(MainActivity.this, "Payment Processed", Toast.LENGTH_SHORT).show();
                 AlertDialog receiptDialog = new AlertDialog.Builder(MainActivity.this).create();
+
                 receiptDialog.setTitle("Receipt");
+                LinearLayout lila1= new LinearLayout(this);
+                lila1.setOrientation(LinearLayout.VERTICAL);
+                final TextView title  = new TextView(this);
+                final TextView line  = new TextView(this);
+                final TextView blank = new TextView(this);
+                final TextView totalTitle = new TextView(this);
+                final TextView totalNum = new TextView(this);
+
+                title.setText("Item              Price               Qty.");
+                title.setPadding(10, 5, 0, 0);
+
+                line.setText("_____________________________________");
+
+                blank.setText("\n");
+                totalTitle.setText("Total");
+                totalTitle.setPadding(10, 2, 0, 0);
+                totalNum.setText("$" + df.format(this.totalPrice));
+                totalNum.setPadding(10,0,0,0);
+
+                lila1.addView(title);
+                for(MyItem thisItem : ListContent.ITEMS)
+                {
+                    final TextView listView = new TextView(this);
+                    listView.setText(thisItem.toString());
+                    listView.setPadding(10,0,0,10);
+                    lila1.addView(listView);
+                }
+                lila1.addView(line);
+                lila1.addView(totalTitle);
+                lila1.addView(totalNum);
+                receiptDialog.setView(lila1);
 
                 receiptDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
@@ -122,24 +154,31 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
                 receiptDialog.show();
                 break;
             }
-            case R.id.half:{
-                Toast.makeText(MainActivity.this, "1/2 Off", Toast.LENGTH_SHORT).show();
-                subtotalPrice /= 2;
-                taxPrice = subtotalPrice*.12;
-                totalPrice = subtotalPrice+taxPrice;
-                subtotal.setText("$ "+df.format(subtotalPrice));
-                tax.setText("$ "+df.format(taxPrice));
-                total.setText("$ "+df.format(totalPrice));
-                halfPriceFlag = true;
+            case R.id.half: {
+                //checks if half price has already been applied and decides whether to apply it
+                if (halfPriceFlag) {
+                    Toast.makeText(MainActivity.this, "Already half off!", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(MainActivity.this, "1/2 Off", Toast.LENGTH_SHORT).show();
+                    subtotalPrice /= 2;
+                    taxPrice = subtotalPrice * .12;
+                    totalPrice = subtotalPrice + taxPrice;
+                    subtotal.setText("$ " + df.format(subtotalPrice));
+                    tax.setText("$ " + df.format(taxPrice));
+                    total.setText("$ " + df.format(totalPrice));
+                    halfPriceFlag = true;
+                }
                 break;
             }
             case R.id.clear:{
+                //gets how many items are in the list and clears the items out one by one
                 Toast.makeText(MainActivity.this, "Clear", Toast.LENGTH_SHORT).show();
                 int count = ItemFragment.mAdapter.getCount();
                 for(int i=0;i<count;i++){
                     ListContent.removeItem(0);
                     ItemFragment.mAdapter.notifyDataSetChanged();
                 }
+                //clears the all the prices
                 Log.d("DEBUG", "Count of the array = "+count);
                 subtotalPrice = 0.00;
                 taxPrice = 0.00;

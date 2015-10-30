@@ -12,6 +12,7 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        //creates a new thread that runs for a certain amount of time before going to the mainactivity
         Thread timerThread = new Thread() {
             public void run() {
                 try {
