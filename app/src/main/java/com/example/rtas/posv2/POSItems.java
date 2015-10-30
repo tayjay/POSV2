@@ -16,10 +16,6 @@ public class POSItems {
 
     public static void init()
     {
-        /*
-        apple = new MyItem(R.id.apple, "Apple", 2.00);
-        ITEMS.add(apple);
-        */
         ITEMS.add(new MyItem(R.id.apple, "Apple", 2.00,1));
         ITEMS.add(new MyItem(R.id.banana,"Banana", 666.00,1));
         ITEMS.add(new MyItem(R.id.battery,"Battery",1.51,1));
