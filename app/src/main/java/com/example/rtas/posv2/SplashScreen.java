@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * Splash screen shown at the start of the app
+ */
 public class SplashScreen extends AppCompatActivity {
 
     @Override

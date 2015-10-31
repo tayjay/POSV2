@@ -17,7 +17,6 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.rtas.posv2.dummy.DummyContent;
 
 /**
  * A fragment representing a list of Items.
@@ -98,20 +97,10 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnListInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
+            /*Initialize the listener*/
             mListener = (OnListInteractionListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
@@ -125,6 +114,7 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
         mListener = null;
     }
 
+    /*Item is pressed in the list*/
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (null != mListener) {
@@ -136,14 +126,10 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
             Toast.makeText(getContext(), position +" "+id,
                     Toast.LENGTH_SHORT).show();
                     */
+            /*Pass action to Main Activity*/
             mListener.onListInteraction(mAdapter, position);
 
         }
-    }
-
-    public void clicked()
-    {
-        //mAdapter.notifyDataSetChanged();
     }
 
     /**
@@ -172,19 +158,6 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
     public interface OnListInteractionListener {
         // TODO: Update argument type and name
         public void onListInteraction(ArrayAdapter adapter, int id);
-    }
-
-    public void addListItems(String item){
-        Resources res = getResources();
-
-    }
-
-    public void update(View view,MyItem item)
-    {
-        //ListContent.addItem(item);
-        //mListView = (AbsListView) view.findViewById(android.R.id.list);
-        //mAdapter.notify();
-
     }
 
 }

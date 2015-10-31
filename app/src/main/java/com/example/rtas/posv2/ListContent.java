@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by tayjm_000 on 2015-10-28.
+ *Items in the shopping list
  */
 public class ListContent {
 
@@ -29,6 +29,7 @@ public class ListContent {
         */
     }
 
+    /*Add item to shopping list*/
     public static void addItem(MyItem item)
     {
         //item.setQuantity(1);
@@ -49,6 +50,7 @@ public class ListContent {
         }
     }
 
+    /*Remove item from shopping list*/
     public static void removeItem(int position)
     {
         MyItem item = ITEMS.get(position);

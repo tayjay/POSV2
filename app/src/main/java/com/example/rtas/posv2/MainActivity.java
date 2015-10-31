@@ -28,7 +28,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements PayFragment.OnFragmentInteractionListener, ButtonsFragment.OnFragmentInteractionListener, ItemFragment.OnListInteractionListener ,View.OnClickListener{
 
 
-
+    /*Class variables*/
     double subtotalPrice = 0;
     double taxPrice = 0;
     double totalPrice = 0;
@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
         return super.onOptionsItemSelected(item);
     }
 
+    /*Pre generated methods*/
     @Override
     public void onFragmentInteraction(int id) {
         ButtonsFragment buttonsFragment = (ButtonsFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
@@ -84,6 +85,8 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
     }
 
 
+
+    /*OnClick listener for all buttons*/
     @Override
     public void onClick(View v) {
         MyItem item;
@@ -95,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
         switch (v.getId())
         {
             default:
+                /*Add item to shopping list*/
                 ItemFragment.mAdapter.notifyDataSetChanged();
                 item = POSItems.getItemById(v.getId());
                 ListContent.addItem(POSItems.getItemById(v.getId()));
@@ -109,6 +113,8 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
                 break;
 
             case R.id.pay:{
+                /*Finish transaction*/
+                /*Display Receipt*/
                 Toast.makeText(MainActivity.this, "Payment Processed", Toast.LENGTH_SHORT).show();
                 AlertDialog receiptDialog = new AlertDialog.Builder(MainActivity.this).create();
 
@@ -152,6 +158,24 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
                             }
                         });
                 receiptDialog.show();
+
+                //gets how many items are in the list and clears the items out one by one
+                Toast.makeText(MainActivity.this, "Clear", Toast.LENGTH_SHORT).show();
+                int count = ItemFragment.mAdapter.getCount();
+                for(int i=0;i<count;i++){
+                    ListContent.removeItem(0);
+                    ItemFragment.mAdapter.notifyDataSetChanged();
+                }
+                //clears the all the prices
+                Log.d("DEBUG", "Count of the array = "+count);
+                subtotalPrice = 0.00;
+                taxPrice = 0.00;
+                totalPrice = 0.00;
+                subtotal.setText("$ "+df.format(subtotalPrice));
+                tax.setText("$ "+df.format(taxPrice));
+                total.setText("$ " + df.format(totalPrice));
+                ItemFragment.mAdapter.notifyDataSetChanged();
+                halfPriceFlag = false;
                 break;
             }
             case R.id.half: {
@@ -198,6 +222,7 @@ public class MainActivity extends AppCompatActivity implements PayFragment.OnFra
 
     @Override
     public void onListInteraction(ArrayAdapter adapter, int id) {
+        /*Removing an item from the list*/
         MyItem item = ListContent.ITEMS.get(id);
         TextView subtotal = (TextView)findViewById(R.id.subtotal);
         TextView tax = (TextView)findViewById(R.id.tax);

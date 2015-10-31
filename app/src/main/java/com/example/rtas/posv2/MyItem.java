@@ -1,7 +1,7 @@
 package com.example.rtas.posv2;
 
 /**
- * Created by tayjm_000 on 2015-10-28.
+ * Custom object to hold data for each item.
  */
 public class MyItem {
     private int id;

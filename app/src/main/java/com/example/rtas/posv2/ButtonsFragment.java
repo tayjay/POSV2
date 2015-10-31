@@ -75,37 +75,10 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener{
 
         if(layout!=null)
         {
-
+            /*Set Button on click listener*/
             Button button = (Button) layout.findViewById(R.id.apple);
             button.setOnClickListener(handleClick);
         }
-
-        Button apple;
-        Button banana;
-
-        apple = (Button) activity.findViewById(R.id.apple);
-
-        //System.out.println(apple);
-        //apple.setOnClickListener(handleClick);
-        /*
-        getActivity().findViewById(R.id.apple).setOnClickListener(handleClick);
-        getActivity().findViewById(R.id.banana).setOnClickListener(handleClick);
-        getActivity().findViewById(R.id.battery).setOnClickListener(handleClick);
-        getActivity().findViewById(R.id.cheese).setOnClickListener(handleClick);
-        getActivity().findViewById(R.id.strawberry).setOnClickListener(handleClick);
-        getActivity().findViewById(R.id.chicken).setOnClickListener(handleClick);
-        getActivity().findViewById(R.id.milk).setOnClickListener(handleClick);
-        getActivity().findViewById(R.id.beef).setOnClickListener(handleClick);
-        getActivity().findViewById(R.id.dress).setOnClickListener(handleClick);
-        getActivity().findViewById(R.id.shoes).setOnClickListener(handleClick);
-        getActivity().findViewById(R.id.lego).setOnClickListener(handleClick);
-        getActivity().findViewById(R.id.book).setOnClickListener(handleClick);
-        getActivity().findViewById(R.id.lotion).setOnClickListener(handleClick);
-        getActivity().findViewById(R.id.tshirt).setOnClickListener(handleClick);
-        getActivity().findViewById(R.id.pants).setOnClickListener(handleClick);
-        getActivity().findViewById(R.id.socks).setOnClickListener(handleClick);
-        */
-
     }
 
     public View.OnClickListener handleClick = new View.OnClickListener() {
@@ -139,29 +112,6 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener{
 
     }
 
-    /*
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(int id) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(id);
-        }
-    }
-    */
-    /*
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-
-
-        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-    */
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -169,6 +119,7 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener{
 
         if(context instanceof Activity)
         {
+            /*Get the activity*/
             activity = (Activity) context;
         }
         try {
@@ -185,6 +136,7 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener{
         mListener = null;
     }
 
+    /*Un used onClick method*/
     @Override
     public void onClick(View v) {
         Button btn = (Button)v;

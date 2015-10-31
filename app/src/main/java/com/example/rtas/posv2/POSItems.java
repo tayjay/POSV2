@@ -14,6 +14,7 @@ public class POSItems {
     public static List<MyItem> ITEMS = new ArrayList<MyItem>();
     private static MyItem apple;
 
+    /*Register all items with their own data*/
     public static void init()
     {
         ITEMS.add(new MyItem(R.id.apple, "Apple", 2.00,1));
@@ -36,18 +37,7 @@ public class POSItems {
 
     }
 
-    public static double getPriceByName(String name)
-    {
-        for(MyItem item: ITEMS)
-        {
-            if(item.getName().equals(name))
-            {
-                return item.getPrice();
-            }
-        }
-        return 0;
-    }
-
+    /*Get an item with the id of the button pressed*/
     public static MyItem getItemById(int id)
     {
         for(MyItem item: ITEMS)
@@ -60,83 +50,4 @@ public class POSItems {
         return new MyItem(0,"null",0,0);
     }
 
-    public static MyItem getItemByName(String name)
-    {
-        for(MyItem item: ITEMS)
-        {
-            if(item.getName().equals(name))
-            {
-
-                return item;
-            }
-        }
-        return new MyItem(0,"null",0,0);
-    }
-
-    public static MyItem getItemRand()
-    {
-        for(MyItem item: ITEMS)
-        {
-            if(item!=null) {
-                return item;
-            }
-        }
-        return new MyItem(0,"null",0,0);
-    }
-
-
-
-
-    public static class Item
-    {
-        private int id;
-        private String name;
-        private double price;
-        private int quantity;
-
-        public Item(int id,String name, double price)
-        {
-            this.id = id;
-            this.name = name;
-            this.price = price;
-        }
-
-        public int getId()
-        {
-            return id;
-        }
-
-        public String getName() {
-            if(name != null) {
-                return name;
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        public double getPrice() {
-            if(name != null) {
-                return price;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-        public int getQuantity() {
-            return quantity;
-        }
-
-        public void setQuantity(int quantity) {
-            this.quantity = quantity;
-        }
-
-        public void addQuantity(int add)
-        {
-            this.quantity += add;
-        }
-    }
 }
